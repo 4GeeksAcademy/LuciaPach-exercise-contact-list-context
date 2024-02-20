@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../store/appContext.js";
 import { Link } from "react-router-dom";
 
 import { ContactCard } from "../component/ContactCard.js";

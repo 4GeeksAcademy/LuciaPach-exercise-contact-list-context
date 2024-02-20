@@ -1,11 +1,25 @@
-const getState = ({ getStore, setStore }) => {
+import { useState } from "react";
+
+const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			//Your data structures, A.K.A Entities
+			agenda: {
+				contacts: []
+			}
 		},
 		actions: {
-			//(Arrow) Functions that update the Store
-			// Remember to use the scope: scope.state.store & scope.setState()
+			getContacts: async () => {
+				try {
+					const response = await fetch("https://playground.4geeks.com/apis/fake/contact/");
+					if (!response.ok) {
+						throw new Error("Network response was not ok");
+					}
+					const data = await response.json();
+					setStore({ agenda: { contacts: data } });
+				} catch (error) {
+					//console.error("Error fetching contacts:", error);
+				}
+			}
 		}
 	};
 };
